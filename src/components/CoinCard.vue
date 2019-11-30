@@ -1,5 +1,8 @@
 <template lang="html">
   <div class="card">
+    <div class="logo">
+      <img :src="logoURL" alt="">
+    </div>
     <li>NAME: {{ticker.name}} RANK {{ticker.rank}}</li>
   </div>
 
@@ -9,6 +12,11 @@
 <script>
 export default {
   name: 'coin-card',
+  data() {
+    return {
+      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.ticker.symbol.toLowerCase() + '_.png'
+    }
+  },
   props: ['ticker']
 }
 </script>
