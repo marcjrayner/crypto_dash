@@ -1,12 +1,15 @@
 <template>
   <div id="app">
+    <h1>Crypto Dash</h1>
     <all-coins :coinTickers="coinTickers"></all-coins>
+    <coin-card :coinTickers="coinTickers"></coin-card>
   </div>
 </template>
 
 <script>
 import {eventBus} from './main.js'
 import AllCoins from './components/AllCoins.vue'
+import CoinCard from './components/CoinCard.vue'
 export default {
   name: 'app',
 
@@ -21,7 +24,8 @@ export default {
     .then(coinTickersJson => this.coinTickers = coinTickersJson.data)
   },
   components: {
-    'all-coins': AllCoins
+    'all-coins': AllCoins,
+    'coin-card': CoinCard
   }
 
 }
