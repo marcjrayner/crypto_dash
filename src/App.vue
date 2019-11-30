@@ -2,14 +2,14 @@
   <div id="app">
     <h1>Crypto Dash</h1>
     <all-coins :coinTickers="coinTickers"></all-coins>
-    <coin-card :coinTickers="coinTickers"></coin-card>
+    <coin-card-list :coinTickers="coinTickers"></coin-card-list>
   </div>
 </template>
 
 <script>
 import {eventBus} from './main.js'
 import AllCoins from './components/AllCoins.vue'
-import CoinCard from './components/CoinCard.vue'
+import CoinCardList from './components/CoinCardList.vue'
 export default {
   name: 'app',
 
@@ -25,7 +25,7 @@ export default {
   },
   components: {
     'all-coins': AllCoins,
-    'coin-card': CoinCard
+    'coin-card-list': CoinCardList
   }
 
 }

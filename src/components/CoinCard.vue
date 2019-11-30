@@ -1,21 +1,29 @@
 <template lang="html">
-<div >
-  <ul>
-    <li v-for="(ticker, index) in coinTickers" :ticker="ticker" :key="index" v-if="ticker && ticker.rank < 10">{{ticker.name}}</li>
-  </ul>
-</div>
+  <div class="card">
+    <li>NAME: {{ticker.name}} RANK {{ticker.rank}}</li>
+  </div>
+
 
 </template>
 
 <script>
-
 export default {
   name: 'coin-card',
-  props: ['coinTickers'],
+  props: ['ticker']
 }
-
-
 </script>
 
 <style lang="css" scoped>
+.card {
+  background: #eee;
+  padding: 10px 20px;
+  margin: 20px 20px;
+  width: 20%;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 </style>
