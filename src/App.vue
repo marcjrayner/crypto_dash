@@ -5,6 +5,24 @@
 </template>
 
 <script>
+import {eventBus} from './main.js'
+import AllCoins from './components/AllCoins.vue'
+export default {
+  name: 'app',
+
+  data() {
+    return {
+      allCoins: []
+    }
+  },
+  mounted() {
+    fetch('https://api.coinlore.com/api/tickers/')
+    .then(response => response.json())
+    .then(coinTickers => this.allCoins = coinTickers)
+  }
+
+}
+
 
 </script>
 
