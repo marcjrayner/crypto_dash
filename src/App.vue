@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    <all-coins :coinTickers="coinTickers"></all-coins>
   </div>
 </template>
 
@@ -12,13 +12,16 @@ export default {
 
   data() {
     return {
-      allCoins: []
+      coinTickers: []
     }
   },
   mounted() {
     fetch('https://api.coinlore.com/api/tickers/')
     .then(response => response.json())
-    .then(coinTickers => this.allCoins = coinTickers)
+    .then(coinTickersJson => this.coinTickers = coinTickersJson.data)
+  },
+  components: {
+    'all-coins': AllCoins
   }
 
 }
