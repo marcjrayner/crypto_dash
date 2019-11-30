@@ -3,7 +3,6 @@
     <h1>Crypto Dash</h1>
     <all-coins :coinTickers="coinTickers"></all-coins>
     <coin-card-list :coinTickers="coinTickers"></coin-card-list>
-    <coin-detail :coin="selectedCoin"></coin-detail>
   </div>
 </template>
 
@@ -57,5 +56,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 
 </style>

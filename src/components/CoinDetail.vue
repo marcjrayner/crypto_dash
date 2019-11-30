@@ -20,14 +20,35 @@ export default {
       <div v-if="isOpen">
         <div class="overlay" @click.self="isOpen = false;">
           <div class="modal">
-            <h1>Modal heading</h1>
-            <p>This my first modal using vue.js</p>
+            <img v-if='coin':src="logoURL" alt="">
+            <h1>{{this.coin.name}}</h1>
+
+            <ul>
+              <li>Rank: {{this.coin.rank}}</li>
+              <hr>
+              <li>BTC: {{this.coin.price_btc}}</li>
+              <hr>
+              <li>USD: {{this.coin.price_usd}}</li>
+              <hr>
+              <li>24hr Volume: {{this.coin.volume24a}}</li>
+              <hr>
+              <li>Market Capitalization (USD): {{this.coin.market_cap_usd}}</li>
+              <hr>
+              <li>Total Supply: {{this.coin.tsupply}}</li>
+              <hr>
+              <li>Percent Change 1h: {{this.coin.percent_change_1h}}%</li>
+              <hr>
+              <li>Percent Change 24h: {{this.coin.percent_change_24h}}%</li>
+              <hr>
+              <li>Percent Change 7d: {{this.coin.percent_change_7d}}%</li>
+              <hr>
+            </ul>
           </div>
         </div>
       </div>
     </transition>
     <button @click="isOpen = !isOpen;">
-      {{ isOpen ? "Close" : "Open" }} modal
+      More info
     </button>
   </div>
 </template>
@@ -35,24 +56,26 @@ export default {
 <script>
 export default {
   props: ['coin'],
-  data: function() {
+  data() {
     return {
-      isOpen: false
-    };
+      isOpen: false,
+      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.coin.symbol.toLowerCase() + '_.png'
+        }
+    }
   }
-};
+
 </script>
 
 <style scoped>
 .modal {
-  width: 500px;
+  width: 700px;
   margin: 0px auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px 3px;
   transition: all 0.2s ease-in;
-  font-family: Helvetica, Arial, sans-serif;
+  /* font-family: Helvetica, Arial, sans-serif; */
 }
 .fadeIn-enter {
   opacity: 0;
@@ -68,9 +91,10 @@ export default {
   transform: scale(1.1);
 }
 button {
-  padding: 7px;
-  margin-top: 10px;
-  background-color: green;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+  background-color: dodgerblue;
   color: white;
   font-size: 1.1rem;
 }

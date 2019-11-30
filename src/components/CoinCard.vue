@@ -7,7 +7,7 @@
     </div>
     <hr>
     <ul>
-      <li>{{ticker.symbol}}</li>
+      <li>{{ticker.symbol}}: 1.00</li>
       <li>BTC: {{ticker.price_btc}}</li>
       <li>USD: {{ticker.price_usd}}</li>
       <li>Vol: {{ticker.volume24a}}</li>
