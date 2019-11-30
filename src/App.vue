@@ -15,13 +15,20 @@ export default {
 
   data() {
     return {
-      coinTickers: []
+      coinTickers: [],
+      selectedCoin: {}
     }
   },
   mounted() {
     fetch('https://api.coinlore.com/api/tickers/')
     .then(response => response.json())
     .then(coinTickersJson => this.coinTickers = coinTickersJson.data)
+
+    eventBus.$on('coin-selected', (coin) => {
+    fetch(`https://api.coinlore.com/api/ticker/?id=${coin.id}`)
+      .then(res => res.json())
+      .then(data => console.log(data))
+  } )
   },
   components: {
     'all-coins': AllCoins,
