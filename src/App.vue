@@ -3,6 +3,7 @@
     <h1>Crypto Dash</h1>
     <all-coins :coinTickers="coinTickers"></all-coins>
     <coin-card-list :coinTickers="coinTickers"></coin-card-list>
+    <coin-detail :coin="selectedCoin"></coin-detail>
   </div>
 </template>
 
@@ -10,9 +11,10 @@
 import {eventBus} from './main.js'
 import AllCoins from './components/AllCoins.vue'
 import CoinCardList from './components/CoinCardList.vue'
+import CoinDetail from './components/CoinDetail.vue'
+
 export default {
   name: 'app',
-
   data() {
     return {
       coinTickers: [],
@@ -27,12 +29,17 @@ export default {
     eventBus.$on('coin-selected', (coin) => {
     fetch(`https://api.coinlore.com/api/ticker/?id=${coin.id}`)
       .then(res => res.json())
-      .then(data => console.log(data))
-  } )
+      .then(data => this.selectedCoin = data[0])
+
+    })
   },
   components: {
     'all-coins': AllCoins,
-    'coin-card-list': CoinCardList
+    'coin-card-list': CoinCardList,
+    'coin-detail': CoinDetail
+  },
+  methods:{
+
   }
 
 }

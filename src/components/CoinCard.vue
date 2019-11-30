@@ -11,7 +11,9 @@
       <li>BTC: {{ticker.price_btc}}</li>
       <li>USD: {{ticker.price_usd}}</li>
       <li>Vol: {{ticker.volume24a}}</li>
+      <coin-detail :coin="selectedCoin"></coin-detail>
     </ul>
+
 
   </div>
 
@@ -19,12 +21,14 @@
 </template>
 
 <script>
+import CoinDetail from './CoinDetail.vue'
 import {eventBus} from '../main.js'
 export default {
   name: 'coin-card',
   data() {
     return {
-      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.ticker.symbol.toLowerCase() + '_.png'
+      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.ticker.symbol.toLowerCase() + '_.png',
+      selectedCoin: this.ticker
     }
   },
   props: ['ticker'],
@@ -32,14 +36,12 @@ export default {
     handleClick() {
       eventBus.$emit('coin-selected', this.ticker)
     }
+  },
+  components: {
+    'coin-detail': CoinDetail
   }
 }
 </script>
-
-
-
-
-
 
 <style lang="css" scoped>
 h4 {
