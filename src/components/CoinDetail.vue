@@ -22,27 +22,31 @@ export default {
           <div class="modal">
             <img v-if='coin':src="logoURL" alt="">
             <h1>{{this.coin.name}}</h1>
-
             <ul>
               <li>Rank: {{this.coin.rank}}</li>
-              <hr>
+              <hr align="left" width="60%">
               <li>BTC: {{this.coin.price_btc}}</li>
-              <hr>
+
               <li>USD: {{this.coin.price_usd}}</li>
-              <hr>
+              <hr align="left" width="60%">
               <li>24hr Volume: {{this.coin.volume24a}}</li>
-              <hr>
+
               <li>Market Capitalization (USD): {{this.coin.market_cap_usd}}</li>
-              <hr>
               <li>Total Supply: {{this.coin.tsupply}}</li>
-              <hr>
+              <hr align="left" width="60%">
               <li>Percent Change 1h: {{this.coin.percent_change_1h}}%</li>
-              <hr>
+
               <li>Percent Change 24h: {{this.coin.percent_change_24h}}%</li>
-              <hr>
+
               <li>Percent Change 7d: {{this.coin.percent_change_7d}}%</li>
-              <hr>
+              <hr align="left" width="60%">
             </ul>
+            <GChart
+            type="ColumnChart"
+            :data="chartData"
+            :options="chartOptions"
+            />
+
           </div>
         </div>
       </div>
@@ -54,15 +58,33 @@ export default {
 </template>
 
 <script>
+import { GChart } from 'vue-google-charts'
+
 export default {
   props: ['coin'],
   data() {
     return {
       isOpen: false,
-      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.coin.symbol.toLowerCase() + '_.png'
+      logoURL: 'https://raw.githubusercontent.com/rainner/binance-watch/master/public/images/icons/' + this.coin.symbol.toLowerCase() + '_.png',
+      chartData: [
+        ['Year', 'Sales', 'Expenses', 'Profit'],
+        ['2014', 1000, 400, 200],
+        ['2015', 1170, 460, 250],
+        ['2016', 660, 1120, 300],
+        ['2017', 1030, 540, 350]
+      ],
+      chartOptions: {
+        chart: {
+          title: 'Company Performance',
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
         }
+      },
+  components: {
+    GChart
+      }
     }
   }
+}
 
 </script>
 
@@ -112,4 +134,18 @@ button {
   z-index: 999;
   transition: opacity 0.2s ease;
 }
+ul {
+  list-style-type: none;
+  text-align: left;
+  /* position: absolute; */
+  /* left: 700px;
+  width: 700px; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+}
+li {
+  text-align: left;
+}
+
 </style>
